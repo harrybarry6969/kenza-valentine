@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenza 🌸</title>
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #ffe6ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  color: #6b2c3e;
+}
+
+.card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 26px;
+  max-width: 390px;
+  width: 92%;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.gallery {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  margin: 18px 0;
+}
+
+.gallery img {
+  height: 190px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+button {
+  border: none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 8px;
+}
+
+#yes {
+  background: #ffb6c9;
+  font-weight: bold;
+  transition: all 0.35s ease;
+}
+
+#no {
+  background: transparent;
+  border: 2px solid #ffb6c9;
+}
+
+#celebration {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(255,230,239,0.97);
+  padding: 30px;
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffb6c9;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-100px) rotate(0deg); }
+  to { transform: translateY(100vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="song" src="beige.mp3" loop></audio>
+
+<div class="card" onclick="playSong()">
+  <h1>Kenza 🌸</h1>
+
+  <p>
+    Hi babe, it's me Harris your boyfriend ❤️💖🥰<br>
+    I love you so so so much
+  </p>
+
+  <div class="gallery">
+    <img src="images/photo1.jpg" alt="Us 💖">
+    <img src="images/photo2.jpg" alt="Us 🥰">
+    <img src="images/photo3.jpg" alt="Us ❤️">
+  </div>
+
+  <h2>Will you be my Valentine? 💖</h2>
+
+  <button id="yes">Yes 🥰</button>
+  <button id="no">No 🥺</button>
+</div>
+
+<div id="celebration">
+  <h1>YAYYYYY 💖❤️🥰</h1>
+  <p>
+    You’re the best thing that has ever happened to me, and I could never imagine a day when my whole world and heart would be with one person till I met you Kenza.
+    <br><br>
+    I love you so much, my future bevee 🌸
+    <br><br>
+    Forever yours,<br>
+    🧸
+  </p>
+</div>
+
+<script>
+const song = document.getElementById("song");
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const celebration = document.getElementById("celebration");
+
+function playSong() {
+  if (song.paused) song.play();
+}
+
+let yesScale = 1;
+let fullScreen = false;
+
+no.addEventListener("click", () => {
+  yesScale += 0.5;
+  yes.style.transform = `scale(${yesScale})`;
+
+  if (yesScale >= 3 && !fullScreen) {
+    fullScreen = true;
+    yes.style.position = "fixed";
+    yes.style.top = "0";
+    yes.style.left = "0";
+    yes.style.width = "100vw";
+    yes.style.height = "100vh";
+    yes.style.borderRadius = "0";
+    yes.style.fontSize = "2.2rem";
+    yes.style.zIndex = "1000";
+  }
+});
+
+yes.addEventListener("click", () => {
+  celebration.style.display = "block";
+
+  for (let i = 0; i < 50; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "%";
+    c.style.animationDuration = 2 + Math.random() * 3 + "s";
+    celebration.appendChild(c);
+  }
+});
+</script>
+
+</body>
+</html>
